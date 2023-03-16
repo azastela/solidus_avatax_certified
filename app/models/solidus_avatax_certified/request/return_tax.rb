@@ -11,7 +11,7 @@ module SolidusAvataxCertified
       def generate
         {
           createTransactionModel: {
-            code: order.number.to_s + '.' + @refund.id.to_s,
+            code: "#{order.number}.#{@refund.id}",
             date: Date.today.strftime('%F'),
             commit: @commit,
             type: @doc_type || 'ReturnOrder',

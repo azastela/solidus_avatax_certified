@@ -2,7 +2,7 @@
 
 require 'logging'
 
-module Services
+module SolidusAvataxCertified
   class TaxSvc
     def get_tax(request_hash)
       log(__method__, request_hash)
@@ -91,7 +91,7 @@ module Services
     end
 
     def client
-      @client ||= Clients::Avatax.new.client
+      @client ||= SolidusAvataxCertified::AvataxClient.new.client
     end
 
     def log(method, request_hash = nil)

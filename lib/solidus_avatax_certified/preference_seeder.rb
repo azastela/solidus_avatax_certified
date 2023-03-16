@@ -3,7 +3,7 @@
 module SolidusAvataxCertified
   class PreferenceSeeder
     class << self
-      def seed!(print_messages = true)
+      def seed!(_print_messages = true)
         ::Spree::Deprecation.warn(
           "#{name}#seed! has been deprecated.\n" \
           "Please refer to our updated setup guide: " \

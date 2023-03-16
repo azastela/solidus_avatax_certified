@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :avalara_shipment, class: Spree::Shipment do
+  factory :avalara_shipment, class: 'Spree::Shipment' do
     tracking { 'U10000' }
     cost { BigDecimal(10) }
     state { 'pending' }

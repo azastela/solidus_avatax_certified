@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe Services::TaxSvc, :vcr do
+RSpec.describe SolidusAvataxCertified::TaxSvc, :vcr do
   let(:taxsvc) { described_class.new }
   let(:request_hash) { build(:request_hash) }
 

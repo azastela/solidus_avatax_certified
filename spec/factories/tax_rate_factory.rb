@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :clothing_tax_rate, class: Spree::TaxRate do
+  factory :clothing_tax_rate, class: 'Spree::TaxRate' do
     name { 'Tax' }
     amount { 0.0 }
     tax_categories { [Spree::TaxCategory.find_by(tax_code: 'PC030000') || create(:tax_category)] }
@@ -10,7 +10,7 @@ FactoryBot.define do
     show_rate_in_label { false }
   end
 
-  factory :shipping_tax_rate, class: Spree::TaxRate do
+  factory :shipping_tax_rate, class: 'Spree::TaxRate' do
     name { 'Shipping Tax' }
     amount { 0.0 }
     tax_categories { [Spree::TaxCategory.find_by(tax_code: 'FR000000') || create(:tax_category, tax_code: 'FR000000')] }

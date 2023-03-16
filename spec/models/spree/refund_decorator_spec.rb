@@ -29,13 +29,13 @@ describe Spree::Refund, :vcr do
   let(:amount_in_cents) { amount * 100 }
   let(:amount) { 10.0 }
 
-  let(:refund) { Spree::Refund.new(payment: payment, amount: BigDecimal(10), reason: refund_reason, transaction_id: nil, reimbursement: reimbursement) }
+  let(:refund) { described_class.new(payment: payment, amount: BigDecimal(10), reason: refund_reason, transaction_id: nil, reimbursement: reimbursement) }
   let(:payment_amount) { amount * 2 }
 
   before do
     allow(payment.payment_method)
       .to receive(:credit)
-      .with(amount_in_cents, payment.source, payment.transaction_id, originator: an_instance_of(Spree::Refund))
+      .with(amount_in_cents, payment.source, payment.transaction_id, originator: an_instance_of(described_class))
       .and_return(gateway_response)
     order.reload
   end
@@ -44,7 +44,7 @@ describe Spree::Refund, :vcr do
 
   describe '#avalara_tax_enabled?' do
     it 'returns true' do
-      expect(Spree::Refund.new.avalara_tax_enabled?).to eq(true)
+      expect(described_class.new.avalara_tax_enabled?).to eq(true)
     end
   end
 

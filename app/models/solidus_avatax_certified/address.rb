@@ -49,7 +49,7 @@ module SolidusAvataxCertified
     private
 
     def validation_response(address)
-      validator = Services::TaxSvc.new
+      validator = SolidusAvataxCertified::TaxSvc.new
       validator.validate_address(address)
     end
   end

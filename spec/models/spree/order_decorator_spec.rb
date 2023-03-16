@@ -11,7 +11,7 @@ describe Spree::Order, :vcr do
 
   describe "#avalara_tax_enabled?" do
     it "returns true" do
-      expect(Spree::Order.new.avalara_tax_enabled?).to eq(true)
+      expect(described_class.new.avalara_tax_enabled?).to eq(true)
     end
   end
 
@@ -63,9 +63,11 @@ describe Spree::Order, :vcr do
     it "responses with Hash object" do
       expect(subject).to be_kind_of(Hash)
     end
+
     it "creates new avalara_transaction" do
       expect{ subject }.to change{ Spree::AvalaraTransaction.count }.by(1)
     end
+
     it 'has key totalTax' do
       expect(subject['totalTax']).to be_present
     end
@@ -116,6 +118,7 @@ describe Spree::Order, :vcr do
     it 'responds with user usage type' do
       expect(order.customer_usage_type).to eq('A')
     end
+
     it 'responds with blank string if no user' do
       order.update(user: nil)
       expect(order.customer_usage_type).to eq('')

@@ -27,6 +27,7 @@ describe Spree::Shipment, type: :model do
 
       expect(shipment.shipping_method_tax_code).to eq('')
     end
+
     it 'returns tax code' do
       tax_category = build(:tax_category, name: 'Shipping', tax_code: 'FR000000')
       shipping_method = build(:shipping_method, tax_category: tax_category)

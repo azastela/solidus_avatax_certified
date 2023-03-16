@@ -18,7 +18,7 @@ module Spree
       end
 
       def ping_my_service
-        mytax = Services::TaxSvc.new
+        mytax = SolidusAvataxCertified::TaxSvc.new
         response = mytax.ping
 
         if response.success?

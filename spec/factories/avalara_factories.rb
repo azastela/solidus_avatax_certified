@@ -52,6 +52,6 @@ FactoryBot.define do
     initialize_with { attributes.deep_symbolize_keys }
   end
 
-  factory :avalara_transaction_calculator, class: 'Spree::Calculator::AvalaraTransaction' do
+  factory :avalara_transaction_calculator, class: 'Spree::AvalaraTransactionCalculator' do
   end
 end

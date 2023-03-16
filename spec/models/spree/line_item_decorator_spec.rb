@@ -10,6 +10,7 @@ describe Spree::LineItem, type: :model do
     it 'creates hash of line item information' do
       expect(line_item.to_hash).to be_kind_of(Hash)
     end
+
     it 'has index of 1' do
       response = line_item.to_hash
       expect(response['Index']).to eq(1)
@@ -18,7 +19,7 @@ describe Spree::LineItem, type: :model do
 
   describe '#avatax_cache_key' do
     it 'responds with a cache key' do
-      line_item = Spree::LineItem.new(price: 10, id: 1, quantity: 1)
+      line_item = described_class.new(price: 10, id: 1, quantity: 1)
 
       expected_response = 'Spree::LineItem-1-1-10.0-0.0'
 

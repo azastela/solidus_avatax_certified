@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Spree
-  class Calculator::AvalaraTransaction < Calculator::DefaultTax
+  class AvalaraTransactionCalculator < Calculator::DefaultTax
     def self.description
       "Avalara Transaction Calculator"
     end

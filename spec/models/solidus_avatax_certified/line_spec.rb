@@ -4,15 +4,17 @@ require 'spec_helper'
 
 describe SolidusAvataxCertified::Line, :vcr do
   let!(:order) { create(:avalara_order, line_items_count: 2) }
-  let(:sales_lines) { SolidusAvataxCertified::Line.new(order, 'SalesOrder') }
+  let(:sales_lines) { described_class.new(order, 'SalesOrder') }
 
   describe '#initialize' do
     it 'has order' do
       expect(sales_lines.order).to eq(order)
     end
+
     it 'has lines be an array' do
       expect(sales_lines.lines).to be_kind_of(Array)
     end
+
     it 'lines should be a length of 3' do
       expect(sales_lines.lines.length).to eq(3)
     end
@@ -24,6 +26,7 @@ describe SolidusAvataxCertified::Line, :vcr do
         expect(sales_lines).to receive(:item_lines_array)
         sales_lines.build_lines
       end
+
       it 'receives method shipment_lines_array' do
         expect(sales_lines).to receive(:shipment_lines_array)
         sales_lines.build_lines
@@ -40,6 +43,7 @@ describe SolidusAvataxCertified::Line, :vcr do
       it 'returns an Array' do
         expect(sales_lines.shipment_lines_array).to be_kind_of(Array)
       end
+
       it 'has a length of 1' do
         expect(sales_lines.shipment_lines_array.length).to eq(1)
       end
@@ -81,7 +85,7 @@ describe SolidusAvataxCertified::Line, :vcr do
 
     let(:refund) { Spree::Refund.new(payment: payment, amount: BigDecimal(10), reason: refund_reason, transaction_id: nil) }
     let(:shipped_order) { build(:shipped_order) }
-    let(:return_lines) { SolidusAvataxCertified::Line.new(shipped_order, 'ReturnOrder', refund) }
+    let(:return_lines) { described_class.new(shipped_order, 'ReturnOrder', refund) }
 
     describe 'build_lines' do
       it 'receives method refund_lines' do

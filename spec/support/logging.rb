@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ::Avatax::Client.prepend(Module.new do
   def initialize(*)
     super

@@ -127,7 +127,7 @@ describe Spree::AvalaraTransaction, :vcr do
       context 'error' do
         it 'receives error' do
           order = create(:order)
-          order.avalara_transaction = Spree::AvalaraTransaction.create
+          order.avalara_transaction = described_class.create
           expect(order.avalara_transaction).to receive(:cancel_order_to_avalara).and_return('Error in Tax')
           order.avalara_transaction.cancel_order
         end

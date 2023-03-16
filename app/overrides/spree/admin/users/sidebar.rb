@@ -10,5 +10,5 @@ Deface::Override.new(
         <%= link_to t("spree.avalara_information"), spree.avalara_information_admin_user_path(@user), id: "avalara-information-tab" %>
       </li>
     <% end %>
-ERB
+  ERB
 )

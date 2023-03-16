@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Clients
-  class Avatax
+module SolidusAvataxCertified
+  class AvataxClient
     AUTH_TYPES = { password: { name: "pass_auth" }, api_key: { name: "api_key_auth" } }.freeze
 
     def client

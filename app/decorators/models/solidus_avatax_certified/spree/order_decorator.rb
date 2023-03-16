@@ -8,11 +8,11 @@ module Models
           base.has_one :avalara_transaction, dependent: :destroy
 
           base.state_machine.before_transition to: :canceled,
-            do: :cancel_avalara,
-            if: :avalara_tax_enabled?
+                                               do: :cancel_avalara,
+                                               if: :avalara_tax_enabled?
           base.state_machine.before_transition to: :delivery,
-            do: :validate_ship_address,
-            if: :address_validation_enabled?
+                                               do: :validate_ship_address,
+                                               if: :address_validation_enabled?
         end
 
         def avalara_tax_enabled?

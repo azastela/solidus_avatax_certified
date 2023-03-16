@@ -24,7 +24,7 @@ describe Spree::Payment, :vcr do
   end
 
   let(:payment) do
-    payment = Spree::Payment.new
+    payment = described_class.new
     payment.source = card
     payment.order = order
     payment.payment_method = gateway

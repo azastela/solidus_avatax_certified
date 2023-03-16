@@ -5,7 +5,7 @@ module Controllers
     module Spree
       module CheckoutControllerDecorator
         def validate_address
-          mytax = Services::TaxSvc.new
+          mytax = SolidusAvataxCertified::TaxSvc.new
           address = permitted_address_validation_attrs
 
           address['country'] = ::Spree::Country.find_by(id: address['country']).try(:iso)

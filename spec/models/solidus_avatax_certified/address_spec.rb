@@ -4,18 +4,18 @@ require 'spec_helper'
 
 describe SolidusAvataxCertified::Address, type: :model do
   let(:address){ build(:address) }
+  let(:address_lines) { described_class.new(order) }
   let(:order) { build(:order_with_line_items, ship_address: address) }
 
   before do
     Spree::Avatax::Config.address_validation = true
   end
 
-  let(:address_lines) { SolidusAvataxCertified::Address.new(order) }
-
   describe '#initialize' do
     it 'has order' do
       expect(address_lines.order).to eq(order)
     end
+
     it 'has addresses be a Hash' do
       expect(address_lines.addresses).to be_kind_of(Hash)
     end
@@ -26,6 +26,7 @@ describe SolidusAvataxCertified::Address, type: :model do
       expect(address_lines).to receive(:origin_address)
       address_lines.build_addresses
     end
+
     it 'receives order_ship_address' do
       expect(address_lines).to receive(:order_ship_address)
       address_lines.build_addresses

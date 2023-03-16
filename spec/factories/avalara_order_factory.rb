@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :avalara_order, class: Spree::Order do
+  factory :avalara_order, class: 'Spree::Order' do
     user
     bill_address
     ship_address

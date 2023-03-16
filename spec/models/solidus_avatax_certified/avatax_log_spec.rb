@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe SolidusAvataxCertified::AvataxLog, type: :model do
-  let(:logger) { SolidusAvataxCertified::AvataxLog.new('test_file.rb', 'test info') }
+  let(:logger) { described_class.new('test_file.rb', 'test info') }
   let(:request_hash) { attributes_for(:request_hash) }
 
   before do

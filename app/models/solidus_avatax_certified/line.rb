@@ -5,6 +5,7 @@ require 'spree/tax/tax_helpers'
 module SolidusAvataxCertified
   class Line
     attr_reader :order, :lines
+
     include ::Spree::Tax::TaxHelpers
 
     def initialize(order, invoice_type, refund = nil)
@@ -88,7 +89,7 @@ module SolidusAvataxCertified
                    return_items.sum(:amount)
                  else
                    return_items.sum(:pre_tax_amount)
-        end
+                 end
 
         lines << return_item_line(inv_unit.first.line_item, quantity, amount)
       end
