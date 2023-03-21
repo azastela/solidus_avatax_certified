@@ -4,11 +4,11 @@ AVATAX_HEADERS = { 'X-Avalara-Client' => ENV["AVATAX_CLIENT_ID"] }.freeze
 
 module SolidusAvataxCertified
   class AvataxConfiguration < ::Spree::Preferences::Configuration
-    preference :company_code, :string, default: -> { ENV['AVATAX_COMPANY_CODE'] }
-    preference :account, :string, default: -> { ENV['AVATAX_ACCOUNT'] }
-    preference :password, :string, default: -> { ENV['AVATAX_PASSWORD'] }
-    preference :license_key, :string, default: -> { ENV['AVATAX_LICENSE_KEY'] }
-    preference :environment, :string, default: -> { default_environment }
+    preference :company_code, :string, default: proc { ENV['AVATAX_COMPANY_CODE'] }
+    preference :account, :string, default: proc { ENV['AVATAX_ACCOUNT'] }
+    preference :password, :string, default: proc { ENV['AVATAX_PASSWORD'] }
+    preference :license_key, :string, default: proc { ENV['AVATAX_LICENSE_KEY'] }
+    preference :environment, :string, default: proc { ENV.fetch('AVATAX_ENVIRONMENT', Rails.env.production? ? 'production' : 'sandbox') }
     preference :log, :boolean, default: true
     preference :log_to_stdout, :boolean, default: false
     preference :address_validation, :boolean
@@ -26,14 +26,6 @@ module SolidusAvataxCertified
 
     def self.storable_env_preferences
       %w(company_code account license_key environment)
-    end
-
-    def default_environment
-      if ENV['AVATAX_ENVIRONMENT'].present?
-        ENV['AVATAX_ENVIRONMENT']
-      else
-        Rails.env.production? ? 'production' : 'sandbox'
-      end
     end
   end
 
