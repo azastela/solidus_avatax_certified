@@ -21,12 +21,8 @@
   <tbody>
   <% @avalara_entity_use_codes.each do |use_code|%>
       <tr id="<%= dom_id use_code %>" data-hook="admin_sale_events_index_rows">
-        <td><%=link_to use_code.use_code, object_url(use_code) %></td>
-        <td><%=use_code.use_code_description %></td>
-        <td data-hook="admin_avalara_entity_use_codes_index_row_actions">
-          <%= link_to_edit use_code, :class => 'edit' %> &nbsp;
-          <%= link_to_delete use_code %>
-        </td>
+        <td><%= use_code.use_code %></td>
+        <td colspan="2"><%= use_code.use_code_description %></td>
       </tr>
   <% end %>
   </tbody>
